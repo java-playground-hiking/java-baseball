@@ -8,6 +8,14 @@ public class StringExpression {
      * @return 문자열 수식을 공백을 기준으로 `split` 한 배열 반환 값
      */
     public static String[] convertExpressionArraysByBlank(String mathExpression) {
+        for (int i = 1; i < mathExpression.length(); i += 2) {
+            char nextChar = mathExpression.charAt(i);
+
+            if (nextChar != ' ') {
+                throw new IllegalArgumentException("Expression must be seperated by a space");
+            }
+        }
+
         return mathExpression.split(" ");
     }
 
