@@ -135,8 +135,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("`StringCalculator` 문자열 수식의 첫 번째 피연산사자가 숫자가 아닌 경우 예외 검증")
-    void 문자열_연산_수식_예외_케이스() {
+    @DisplayName("`StringCalculator` 문자열 수식의 첫 번째 피연산자가 숫자가 아닌 경우 예외 검증")
+    void 문자열_연산_수식_예외_케이스1() {
         // Given
         String invalidExpression = "+ 1 + 5";
         String[] fixture = StringExpression.convertExpressionArraysByBlank(invalidExpression);
@@ -148,6 +148,23 @@ public class StringCalculatorTest {
                 // Then
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("Invalid math expression must be start with number");
+
+    }
+
+    @Test
+    @DisplayName("`StringCalculator` 문자열 수식의 연산자가 연속으로 오는 에러 케이스 검증")
+    void 문자열_연산_수식_예외_케이스2() {
+        // Given
+        String invalidExpression = "2 + 1 + + 5";
+        String[] fixture = StringExpression.convertExpressionArraysByBlank(invalidExpression);
+
+        // When
+        assertThatThrownBy(() -> {
+            service.calculate(fixture);
+        })
+                // Then
+                .isInstanceOf(ArithmeticException.class)
+                .hasMessageContaining("Math expression must be operated on numeric only");
 
     }
 }

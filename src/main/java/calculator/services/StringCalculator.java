@@ -25,10 +25,11 @@ public class StringCalculator {
         for (int i = 0; i < expressionValues.length - 2; i += 2) {
             String expressionNumber = expressionValues[i + 2];
 
-            if (StringExpression.isNumeric(expressionNumber)) {
-                operandLast = Integer.parseInt(expressionValues[i + 2]);
+            if (!StringExpression.isNumeric(expressionNumber)) {
+                throw new ArithmeticException("Math expression must be operated on numeric only");
             }
 
+            operandLast = Integer.parseInt(expressionValues[i + 2]);
             op = expressionValues[i + 1];
             // NOTE: 연산 결과를 첫번째 인자로 넘기기 위해 `operandFirst` 변수에 반환 값을 할당
             expresionResult = Operator.getOperator(op).apply(expresionResult, operandLast);
