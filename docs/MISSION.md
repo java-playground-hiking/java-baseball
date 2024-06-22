@@ -5,7 +5,7 @@
 
 ### String 클래스에 대한 학습 테스트
 
-:check: **샘플 코드 참고**
+:white_check_mark: **샘플 코드 참고**
 
 #### src/test/java 폴더의 study.StringTest 클래스의 replace() 메서드를 실행해 테스트가 가능한지 확인한다.
 ```java
