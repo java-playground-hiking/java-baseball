@@ -1,0 +1,8 @@
+name: "Auto Assign Reviewer"
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  call-auto-assign:
+    uses: java-playground-hiking/.github/.github/workflows/auto-assign-reviewer.yml@main
