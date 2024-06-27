@@ -5,4 +5,4 @@ on:
 
 jobs:
   call-auto-assign:
-    uses: java-playground-hiking/.github/.github/workflows/auto-assign-reviewer.yml@main
+    uses: java-playground-hiking/.github/.github/workflows/auto-reviewer.yml@main
