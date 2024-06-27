@@ -1,8 +1,12 @@
-name: "Auto Assign Reviewer"
-on:
-  pull_request:
-    types: [opened, reopened]
+ name: 'Auto Assign Reviewer'
+ on:
+   pull_request:
+     types: [opened, reopened]
 
-jobs:
-  call-auto-assign:
-    uses: java-playground-hiking/.github/.github/workflows/auto-reviewer.yml@main
+ jobs:
+   add-reviews:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: kentaro-m/auto-assign-action@v2
+         with:
+           configuration-path: .github/config-auto-assign.yml
