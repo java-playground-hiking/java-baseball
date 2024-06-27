@@ -11,11 +11,7 @@ jobs:
       - uses: hkusu/review-assign-action@v1.4.0
         with:
           assignees: ${{ github.actor }}
-          reviewers: |
-            ohdeng02
-            rigyeonghong
-            JoHyoju04
-            LeeJuHwan
+          reviewers: ${{ vars.REVIEWERS }}
       - name: Show result
         if: always()
         run: echo '${{ steps.assign.outputs.result }}' # success or failure
