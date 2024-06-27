@@ -8,10 +8,8 @@ jobs:
   assign:
     runs-on: ubuntu-latest
     steps:
-      - uses: hkusu/review-assign-action@v1.4.0
+      - uses: hkusu/review-assign-action@v1
         with:
           assignees: ${{ github.actor }}
           reviewers: ${{ vars.REVIEWERS }}
-      - name: Show result
-        if: always()
-        run: echo '${{ steps.assign.outputs.result }}' # success or failure
+          max-num-of-reviewers: 1
