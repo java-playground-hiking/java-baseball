@@ -1,0 +1,9 @@
+addReviewers: true
+addAssignees: false
+
+reviewers:
+  - ohdeng02
+  - rigyeonghong
+  - JoHyoju04
+
+numberOfReviewers: 1
