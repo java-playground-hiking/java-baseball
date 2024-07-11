@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class StringTest {
     @Test
@@ -14,23 +15,29 @@ public class StringTest {
     }
 
     @Test
-    void split() {
+    void split_contains() {
         //given
         String actual = "1,2";
 
-        //when1
-        String[] spltedStrList = actual.split(",");
-        //then1
-        assertThat(spltedStrList).contains("1");
-        assertThat(spltedStrList).contains("2");
+        //when
+        String[] splitStrList = actual.split(",");
 
+        //then
+        assertAll(
+                () -> assertThat(splitStrList).contains("1"),
+                () -> assertThat(splitStrList).contains("2")
+        );
+    }
+
+    @Test
+    void split_containsExactly() {
         //given
-        String actual2 = "1";
+        String actual = "1";
 
-        //when2
-        String[] spltedStrList2 = actual2.split(",");
-        //then2
-        assertThat(spltedStrList2).containsExactly("1");
+        //when
+        String[] splitStrList = actual.split(",");
+        //then
+        assertThat(splitStrList).containsExactly("1");
     }
 
     @Test
