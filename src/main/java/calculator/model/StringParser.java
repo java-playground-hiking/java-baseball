@@ -18,7 +18,7 @@ public class StringParser {
     }
 
     private boolean isNullOrBlank(String expression) {
-        return expression.isBlank();
+        return expression == null || expression.isBlank();
     }
 }
 

@@ -2,17 +2,17 @@ package calculator.utils;
 
 import calculator.model.Operator;
 
-public class StringExceptionHandler {
+public class StringExpression {
     private static final int MINIMUM_TOKEN_COUNT = 3;
     private final String[] expressionTokens;
 
-    public StringExceptionHandler(String[] expressionTokens) {
+    public StringExpression(String[] expressionTokens) {
         this.expressionTokens = expressionTokens;
     }
 
-    public StringExceptionHandler validate() {
+    public StringExpression validate() {
         validateExpressionTokenCount(expressionTokens);
-        return new StringExceptionHandler(expressionTokens);
+        return new StringExpression(expressionTokens);
     }
 
     public int getExpressionLength() {
