@@ -1,16 +1,12 @@
 package calculator.model;
 
-import calculator.view.InputView;
-import calculator.view.OutputView;
+import calculator.utils.StringExceptionHandler;
 
 public class StringCalculator {
+    private final StringExceptionHandler stringExceptionHandler;
 
-    private final InputView inputView;
-    private final OutputView outputView;
-
-    public StringCalculator(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public StringCalculator(StringExceptionHandler stringExceptionHandler) {
+        this.stringExceptionHandler = stringExceptionHandler;
     }
 
     public void run() {
