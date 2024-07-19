@@ -1,5 +1,7 @@
 package calculator.utils;
 
+import calculator.model.Operator;
+
 public class StringExceptionHandler {
     private static final int MINIMUM_TOKEN_COUNT = 3;
     private final String[] expressionTokens;
@@ -11,6 +13,22 @@ public class StringExceptionHandler {
     public StringExceptionHandler validate() {
         validateExpressionTokenCount(expressionTokens);
         return new StringExceptionHandler(expressionTokens);
+    }
+
+    public int getExpressionLength() {
+        return expressionTokens.length;
+    }
+
+    public int getNumberByIndex(int index) {
+        try {
+            return Integer.parseInt(expressionTokens[index]);
+        } catch (NumberFormatException e) {
+            throw new StringException(StringException.INVALID_LOCATION);
+        }
+    }
+
+    public Operator getOperatorByIndex(int index) {
+        return Operator.findOperator(expressionTokens[index]);
     }
 
     private void validateExpressionTokenCount(String[] expressionTokens) {

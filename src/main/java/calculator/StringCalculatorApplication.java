@@ -7,9 +7,8 @@ import calculator.view.InputView;
 
 public class StringCalculatorApplication {
     public static void main(String[] args) {
-        String[] expressionTokens = new StringParser(new InputView().getInputString()).parse(); //ok
+        String[] expressionTokens = new StringParser(new InputView().getInputString()).parse();
         StringExceptionHandler stringExceptionHandler = new StringExceptionHandler(expressionTokens).validate();
-        StringCalculator stringCalculator = new StringCalculator(stringExceptionHandler);
-        stringCalculator.run();
+        int calculationResult = new StringCalculator(stringExceptionHandler).calculate();
     }
 }
