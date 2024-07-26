@@ -5,11 +5,23 @@ import calculator.utils.StringException;
 import calculator.utils.StringExpression;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class StringExpressionTest {
+    static Stream<Arguments> generateData() {
+        return Stream.of(
+                Arguments.of((Object) new String[]{"2", "*"}),
+                Arguments.of((Object) new String[]{"2", "*", "67", "%"})
+        );
+    }
+
     @DisplayName("문자열 토큰 개수가 3이상이고 홀수인 경우 테스트")
     @Test
     void validExpressionTokenCountTest() {
@@ -24,26 +36,12 @@ public class StringExpressionTest {
         assertThat(returnExpression).isNotEqualTo(stringExpression);
     }
 
-    @DisplayName("문자열 토큰 개수가 2이하인 경우 테스트")
-    @Test
-    void invalidExpressionTokenCountTest1() {
+    @DisplayName("문자열 토큰 개수가 2이하 혹은 짝수인 경우 테스트")
+    @ParameterizedTest
+    @MethodSource("generateData")
+    void invalidExpressionTokenCountTest1(String[] tokens) {
         //given
-        String[] expressionTokens = {"2", "*"};
-        StringExpression stringExpression = new StringExpression(expressionTokens);
-
-        //when
-        assertThatThrownBy(stringExpression::validate)
-                //then
-                .isInstanceOf(StringException.class)
-                .hasMessageContaining(StringException.INVALID_STRING_TOKEN_COUNT);
-    }
-
-    @DisplayName("문자열 토큰 개수가 짝수인 경우 테스트")
-    @Test
-    void invalidExpressionTokenCountTest2() {
-        //given
-        String[] expressionTokens = {"2", "*", "67", "%"};
-        StringExpression stringExpression = new StringExpression(expressionTokens);
+        StringExpression stringExpression = new StringExpression(tokens);
 
         //when
         assertThatThrownBy(stringExpression::validate)
