@@ -19,7 +19,11 @@ public enum Operator {
     DIVIDE("/") {
         @Override
         public int calculate(int operand1, int operand2) {
-            return operand1 / operand2;
+            try {
+                return operand1 / operand2;
+            } catch (ArithmeticException e) {
+                throw new StringException(StringException.INVALID_DIVIDE_VALUE);
+            }
         }
     },
     MULTIPLY("*") {
