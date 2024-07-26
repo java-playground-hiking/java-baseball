@@ -15,7 +15,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import java.util.stream.Stream;
 
 public class StringCalculatorTest {
-    //잘못된 연산자가 입력된 경우(연산자 자리에. 짝수자리)
     static Stream<Arguments> generateData() {
         return Stream.of(
                 Arguments.of(new String[]{"2", "*", "4", "-", "45", "+", "3", "/", "7"}, -4),
