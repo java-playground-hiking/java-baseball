@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class StringParserTest {
-    @DisplayName("공벡을 기준으로 문자열 분리 테스트")
+    @DisplayName("공백을 기준으로 문자열 분리 테스트")
     @Test
     void validStringParseTest() {
         //given

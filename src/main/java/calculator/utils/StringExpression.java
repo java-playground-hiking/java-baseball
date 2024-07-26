@@ -24,11 +24,17 @@ public class StringExpression {
             return Integer.parseInt(expressionTokens[index]);
         } catch (NumberFormatException e) {
             throw new StringException(StringException.INVALID_LOCATION);
+        } catch (IndexOutOfBoundsException e) {
+            throw new StringException(StringException.INDEX_OUT_OF_BOUND);
         }
     }
 
     public Operator getOperatorByIndex(int index) {
-        return Operator.findOperator(expressionTokens[index]);
+        try {
+            return Operator.findOperator(expressionTokens[index]);
+        } catch (IndexOutOfBoundsException e) {
+            throw new StringException(StringException.INDEX_OUT_OF_BOUND);
+        }
     }
 
     private void validateExpressionTokenCount(String[] expressionTokens) {
