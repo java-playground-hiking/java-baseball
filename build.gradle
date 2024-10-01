@@ -5,11 +5,14 @@ group = 'camp.nextstep'
 version = '1.0.0'
 sourceCompatibility = '1.8'
 
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     testImplementation "org.junit.jupiter:junit-jupiter:5.7.2"
     testImplementation "org.assertj:assertj-core:3.19.0"
 }
