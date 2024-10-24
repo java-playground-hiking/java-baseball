@@ -4,13 +4,14 @@ import java.util.*;
 
 public class Baseball {
 
+
     private static final int PLAY_ROUND = 3;
     private final List<Integer> answer;
     private final BaseballScore score;
 
-    public Baseball(BaseballScore score, List<Integer> answer){
+    public Baseball(BaseballScore score, BaseballAnswer baseballAnswer){
         this.score = score;
-        this.answer = answer;
+        this.answer = baseballAnswer.getAnswer();
     }
 
     public BaseballScore play(List<Integer> userInput) {
@@ -32,14 +33,5 @@ public class Baseball {
             score.addBall();
         }
     }
-
-
-
-
-
-
-
-
-
 
 }

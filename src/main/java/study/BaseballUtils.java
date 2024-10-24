@@ -13,14 +13,6 @@ public class BaseballUtils {
     private static final Random random = new Random();
 
 
-    public static void addUniqueNumber(List<Integer> answer) {
-        int num = getRandomNumber();
-
-        if (!answer.contains(num)){
-            answer.add(num);
-        }
-    }
-
     public static int getRandomNumber() {
         return random.nextInt(MAX_NUMBER)+1;
     }
@@ -49,7 +41,11 @@ public class BaseballUtils {
         return value;
     }
 
-    public static boolean checkLength(String input) {
-        return input.length() == LIST_SIZE;
+    public static void checkLength(String input) {
+        input = input.replaceAll(" ", "");
+
+        if (input.length() != LIST_SIZE){
+            throw new IllegalArgumentException(ErrorMessages.INVALID_INPUT_LENGTH);
+        }
     }
 }

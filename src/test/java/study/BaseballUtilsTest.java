@@ -5,31 +5,11 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import study.message.ErrorMessages;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BaseballUtilsTest {
-
-    @Test
-    @DisplayName("리스트 내 중복 체크 후 중복값 없어 리스트에 추가")
-    void addUniqueNumber() {
-        // given
-        List<Integer> answer = new ArrayList<>();
-        answer.add(1);
-        answer.add(2);
-
-        // when
-        BaseballUtils.addUniqueNumber(answer);
-
-        // then
-        assertEquals(answer.size(), 3);
-        assertEquals(answer.get(0), 1);
-        assertEquals(answer.get(1), 2);
-        assertNotNull(answer.get(2));
-
-    }
 
     @RepeatedTest(10)
     @DisplayName("랜덤 숫자 생성")
@@ -60,6 +40,10 @@ public class BaseballUtilsTest {
         assertEquals(response.get(1), 2);
         assertEquals(response.get(2), 3);
     }
+
+
+
+
 
     @Test
     @DisplayName("String 을 List<Integer>로 변경 시 숫자가 아닌 값 입력으로 예외 발생")
@@ -116,30 +100,41 @@ public class BaseballUtilsTest {
     }
 
     @Test
-    @DisplayName("문자열 길이 체크로 3자리 문자열 입력으로 true 반환")
-    void checkLengthTrue(){
+    @DisplayName("문자열 길이 체크")
+    void checkLength(){
         // given
         String input = "123";
 
         // when
-        boolean response = BaseballUtils.checkLength(input);
-
         // then
-        assertTrue(response);
+        assertDoesNotThrow(() -> BaseballUtils.checkLength(input));
     }
 
     @Test
-    @DisplayName("문자열 길이 체크로 3자리 이상 문자열 입력으로 false 반환")
+    @DisplayName("공백이 포함된 문자열 길이 체크")
+    void checkLengthContainBlank(){
+        // given
+        String input = "12 3 ";
+
+        // when
+        assertDoesNotThrow(() -> BaseballUtils.checkLength(input));
+    }
+
+    @Test
+    @DisplayName("문자열 길이 체크로 3자리 이상 문자열 입력 예외 발생")
     void checkLengthFalse(){
         // given
         String input = "12345";
 
         // when
-        boolean response = BaseballUtils.checkLength(input);
+        IllegalArgumentException fail =  assertThrows(IllegalArgumentException.class, () -> BaseballUtils.checkLength(input));
 
         // then
-        assertFalse(response);
+        assertEquals(fail.getMessage(), ErrorMessages.INVALID_INPUT_LENGTH);
     }
+
+
+
 
 
 }

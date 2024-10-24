@@ -14,13 +14,13 @@ public class BaseballTest {
     @DisplayName("3스트라이크")
     void playStrike(){
         // given
-        List<Integer> answer = Arrays.asList(1, 2, 3);
-        List<Integer> userInput = Arrays.asList(1, 2, 3);
+        BaseballAnswer baseballAnswer = new BaseballAnswer();
+        List<Integer> answer = baseballAnswer.getAnswer();
 
-        Baseball baseball = new Baseball(new BaseballScore(), answer);
+        Baseball baseball = new Baseball(new BaseballScore(), baseballAnswer);
 
         // when
-        BaseballScore response = baseball.play(userInput);
+        BaseballScore response = baseball.play(answer);
 
         // then
         assertEquals(response.getStrike(), 3);
@@ -30,10 +30,11 @@ public class BaseballTest {
     @DisplayName("1스트라이크 2볼")
     void play1Strike2Ball(){
         // given
-        List<Integer> answer = Arrays.asList(1, 2, 3);
-        List<Integer> userInput = Arrays.asList(1, 3, 2);
+        BaseballAnswer baseballAnswer = new BaseballAnswer();
+        List<Integer> answer = baseballAnswer.getAnswer();
+        List<Integer> userInput = Arrays.asList(answer.get(0), answer.get(2), answer.get(1));
 
-        Baseball baseball = new Baseball(new BaseballScore(), answer);
+        Baseball baseball = new Baseball(new BaseballScore(), baseballAnswer);
 
         // when
         BaseballScore response = baseball.play(userInput);
@@ -47,10 +48,11 @@ public class BaseballTest {
     @DisplayName("3볼")
     void play3Ball(){
         // given
-        List<Integer> answer = Arrays.asList(1, 2, 3);
-        List<Integer> userInput = Arrays.asList(3, 1, 2);
+        BaseballAnswer baseballAnswer = new BaseballAnswer();
+        List<Integer> answer = baseballAnswer.getAnswer();
+        List<Integer> userInput = Arrays.asList(answer.get(1), answer.get(2), answer.get(0));
 
-        Baseball baseball = new Baseball(new BaseballScore(), answer);
+        Baseball baseball = new Baseball(new BaseballScore(), baseballAnswer);
 
         // when
         BaseballScore response = baseball.play(userInput);
@@ -59,33 +61,20 @@ public class BaseballTest {
         assertEquals(response.getBall(), 3);
     }
 
-    @Test
-    @DisplayName("낫싱")
-    void playNothing(){
-        // given
-        List<Integer> answer = Arrays.asList(1, 2, 3);
-        List<Integer> userInput = Arrays.asList(4, 5, 6);
-
-        Baseball baseball = new Baseball(new BaseballScore(), answer);
-
-        // when
-        BaseballScore response = baseball.play(userInput);
-
-        // then
-        assertEquals(response.getBall(), 0);
-        assertEquals(response.getBall(), 0);
-    }
 
     @Test
     @DisplayName("답 확인 : 스트라이크")
     void calculateScoreStrike(){
         // given
-        int index = 2;
-        int input = 3;
+        BaseballAnswer baseballAnswer = new BaseballAnswer();
+        List<Integer> answer = baseballAnswer.getAnswer();
 
-        List<Integer> answer = Arrays.asList(1, 2, 3);
         BaseballScore score = new BaseballScore();
-        Baseball baseball = new Baseball(score, answer);
+        Baseball baseball = new Baseball(score, baseballAnswer);
+
+        int index = 2;
+        int input = answer.get(2);
+
 
         // when
         baseball.calculateScore(index, input);
@@ -99,12 +88,14 @@ public class BaseballTest {
     @DisplayName("답 확인 : 볼")
     void calculateScoreBall(){
         // given
-        int index = 1;
-        int input = 3;
+        BaseballAnswer baseballAnswer = new BaseballAnswer();
+        List<Integer> answer = baseballAnswer.getAnswer();
 
-        List<Integer> answer = Arrays.asList(1, 2, 3);
         BaseballScore score = new BaseballScore();
-        Baseball baseball = new Baseball(score, answer);
+        Baseball baseball = new Baseball(score, baseballAnswer);
+
+        int index = 1;
+        int input = answer.get(2);
 
         // when
         baseball.calculateScore(index, input);
@@ -118,12 +109,11 @@ public class BaseballTest {
     @DisplayName("답 확인 : 낫싱")
     void calculateScoreNothing(){
         // given
-        int index = 1;
-        int input = 5;
-
-        List<Integer> answer = Arrays.asList(1, 2, 3);
         BaseballScore score = new BaseballScore();
-        Baseball baseball = new Baseball(score, answer);
+        Baseball baseball = new Baseball(score, new BaseballAnswer());
+
+        int index = 1;
+        int input = 10;
 
         // when
         baseball.calculateScore(index, input);

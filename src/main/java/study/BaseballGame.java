@@ -4,12 +4,11 @@ import java.util.List;
 
 public class BaseballGame {
 
-    public BaseballScore playGame(String number) {
-        BaseballGenerator generator = new BaseballGenerator();
-        List<Integer> userInput = generator.createUserInputList(number);
-        List<Integer> answer = generator.createAnswer();
+    public BaseballScore playGame(String input) {
+        BaseballUtils.checkLength(input);
+        List<Integer> userInput = BaseballUtils.stringToIntegerList(input);
 
-        Baseball baseball = new Baseball(new BaseballScore(), answer);
+        Baseball baseball = new Baseball(new BaseballScore(), new BaseballAnswer());
         return baseball.play(userInput);
 
     }
