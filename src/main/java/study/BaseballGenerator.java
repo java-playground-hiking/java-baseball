@@ -23,7 +23,7 @@ public class BaseballGenerator {
         List<Integer> answer = new ArrayList<>();
 
         while(answer.size() < LIST_SIZE){
-            answer = BaseballUtils.addUniqueNumber(answer);
+            BaseballUtils.addUniqueNumber(answer);
         }
 
         return answer;

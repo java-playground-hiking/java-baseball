@@ -3,18 +3,14 @@ package study;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import study.message.ErrorMessages;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class BaseballUtilsTest {
-
 
     @Test
     @DisplayName("리스트 내 중복 체크 후 중복값 없어 리스트에 추가")
@@ -25,13 +21,13 @@ public class BaseballUtilsTest {
         answer.add(2);
 
         // when
-        List<Integer> response = BaseballUtils.addUniqueNumber(answer);
+        BaseballUtils.addUniqueNumber(answer);
 
         // then
-        assertEquals(response.size(), 3);
-        assertEquals(response.get(0), 1);
-        assertEquals(response.get(1), 2);
-        assertNotNull(response.get(2));
+        assertEquals(answer.size(), 3);
+        assertEquals(answer.get(0), 1);
+        assertEquals(answer.get(1), 2);
+        assertNotNull(answer.get(2));
 
     }
 

@@ -60,7 +60,7 @@ public class BaseballTest {
     }
 
     @Test
-    @DisplayName("낫씽")
+    @DisplayName("낫싱")
     void playNothing(){
         // given
         List<Integer> answer = Arrays.asList(1, 2, 3);
@@ -74,6 +74,63 @@ public class BaseballTest {
         // then
         assertEquals(response.getBall(), 0);
         assertEquals(response.getBall(), 0);
+    }
+
+    @Test
+    @DisplayName("답 확인 : 스트라이크")
+    void calculateScoreStrike(){
+        // given
+        int index = 2;
+        int input = 3;
+
+        List<Integer> answer = Arrays.asList(1, 2, 3);
+        BaseballScore score = new BaseballScore();
+        Baseball baseball = new Baseball(score, answer);
+
+        // when
+        baseball.calculateScore(index, input);
+
+        // then
+        assertEquals(score.getStrike(), 1);
+        assertEquals(score.getBall(), 0);
+    }
+
+    @Test
+    @DisplayName("답 확인 : 볼")
+    void calculateScoreBall(){
+        // given
+        int index = 1;
+        int input = 3;
+
+        List<Integer> answer = Arrays.asList(1, 2, 3);
+        BaseballScore score = new BaseballScore();
+        Baseball baseball = new Baseball(score, answer);
+
+        // when
+        baseball.calculateScore(index, input);
+
+        // then
+        assertEquals(score.getStrike(), 0);
+        assertEquals(score.getBall(), 1);
+    }
+
+    @Test
+    @DisplayName("답 확인 : 낫싱")
+    void calculateScoreNothing(){
+        // given
+        int index = 1;
+        int input = 5;
+
+        List<Integer> answer = Arrays.asList(1, 2, 3);
+        BaseballScore score = new BaseballScore();
+        Baseball baseball = new Baseball(score, answer);
+
+        // when
+        baseball.calculateScore(index, input);
+
+        // then
+        assertEquals(score.getStrike(), 0);
+        assertEquals(score.getBall(), 0);
     }
 
 }

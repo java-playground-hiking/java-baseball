@@ -65,7 +65,6 @@ public class BaseballGeneratorTest {
     @DisplayName("정답 생성")
     void getAnswer(){
         // given
-
         // when
         BaseballGenerator generator = new BaseballGenerator();
         List<Integer> response = generator.createAnswer();

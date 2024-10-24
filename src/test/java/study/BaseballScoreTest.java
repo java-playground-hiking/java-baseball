@@ -11,9 +11,9 @@ public class BaseballScoreTest {
     @DisplayName("스트라이크 점수 증가")
     void addStrike() {
         // given
+        BaseballScore score = new BaseballScore();
 
         // when
-        BaseballScore score = new BaseballScore();
         score.addStrike();
 
         // then
@@ -24,15 +24,14 @@ public class BaseballScoreTest {
     @DisplayName("볼 점수 증가")
     void addBall() {
         // given
+        BaseballScore score = new BaseballScore();
 
         // when
-        BaseballScore score = new BaseballScore();
         score.addBall();
 
         // then
         assertEquals(score.getBall(), 1);
     }
-
 
     @Test
     @DisplayName("점수 출력 : 3스트라이크")
@@ -98,7 +97,7 @@ public class BaseballScoreTest {
     }
 
     @Test
-    @DisplayName("3스크라이크 여부")
+    @DisplayName("3스트라이크인 경우 true 반환")
     void isThreeStrikeTrue(){
         // given
         BaseballScore score = new BaseballScore();
@@ -115,7 +114,7 @@ public class BaseballScoreTest {
     }
 
     @Test
-    @DisplayName("3스크라이크 여부")
+    @DisplayName("3스트라이크가 아닌 경우 false 반환")
     void isThreeStrikeFalse(){
         // given
         BaseballScore score = new BaseballScore();

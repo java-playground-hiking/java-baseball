@@ -13,14 +13,12 @@ public class BaseballUtils {
     private static final Random random = new Random();
 
 
-    public static List<Integer> addUniqueNumber(List<Integer> answer) {
+    public static void addUniqueNumber(List<Integer> answer) {
         int num = getRandomNumber();
 
         if (!answer.contains(num)){
             answer.add(num);
         }
-
-        return answer;
     }
 
     public static int getRandomNumber() {

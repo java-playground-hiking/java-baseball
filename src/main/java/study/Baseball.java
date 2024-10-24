@@ -16,19 +16,19 @@ public class Baseball {
     public BaseballScore play(List<Integer> userInput) {
         System.out.println(answer.toString());
         for(int i=0; i<PLAY_ROUND; i++){
-            checkAnswer(i, userInput.get(i));
+            calculateScore(i, userInput.get(i));
         }
 
         return score;
     }
 
-    public void checkAnswer(int i, int input){
-        boolean sameIndex = answer.get(i).equals(input);
+    public void calculateScore(int index, int input){
+        boolean isStrike = answer.get(index).equals(input);
 
-        if (sameIndex){
+        if (isStrike){
             score.addStrike();
         }
-        if (!sameIndex && answer.contains(input)){
+        if (!isStrike && answer.contains(input)){
             score.addBall();
         }
     }
