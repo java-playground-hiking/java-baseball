@@ -1,7 +1,8 @@
-package study;
+package study.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import study.utils.BaseballUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,10 +18,13 @@ public class BaseballTest {
         BaseballAnswer baseballAnswer = new BaseballAnswer();
         List<Integer> answer = baseballAnswer.getAnswer();
 
+        String userInput = String.valueOf(answer.get(0)) + answer.get(1) + answer.get(2);
+        BaseballUser user = new BaseballUser(userInput);
+
         Baseball baseball = new Baseball(new BaseballScore(), baseballAnswer);
 
         // when
-        BaseballScore response = baseball.play(answer);
+        BaseballScore response = baseball.play(user);
 
         // then
         assertEquals(response.getStrike(), 3);
@@ -32,12 +36,14 @@ public class BaseballTest {
         // given
         BaseballAnswer baseballAnswer = new BaseballAnswer();
         List<Integer> answer = baseballAnswer.getAnswer();
-        List<Integer> userInput = Arrays.asList(answer.get(0), answer.get(2), answer.get(1));
+
+        String userInput = String.valueOf(answer.get(0)) + answer.get(2) + answer.get(1);
+        BaseballUser user = new BaseballUser(userInput);
 
         Baseball baseball = new Baseball(new BaseballScore(), baseballAnswer);
 
         // when
-        BaseballScore response = baseball.play(userInput);
+        BaseballScore response = baseball.play(user);
 
         // then
         assertEquals(response.getStrike(), 1);
@@ -50,12 +56,14 @@ public class BaseballTest {
         // given
         BaseballAnswer baseballAnswer = new BaseballAnswer();
         List<Integer> answer = baseballAnswer.getAnswer();
-        List<Integer> userInput = Arrays.asList(answer.get(1), answer.get(2), answer.get(0));
+
+        String userInput = String.valueOf(answer.get(1)) + answer.get(2) + answer.get(0);
+        BaseballUser user = new BaseballUser(userInput);
 
         Baseball baseball = new Baseball(new BaseballScore(), baseballAnswer);
 
         // when
-        BaseballScore response = baseball.play(userInput);
+        BaseballScore response = baseball.play(user);
 
         // then
         assertEquals(response.getBall(), 3);
@@ -122,5 +130,6 @@ public class BaseballTest {
         assertEquals(score.getStrike(), 0);
         assertEquals(score.getBall(), 0);
     }
+
 
 }
