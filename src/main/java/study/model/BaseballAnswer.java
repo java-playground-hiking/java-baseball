@@ -1,10 +1,12 @@
-package study;
+package study.model;
+
+import study.utils.BaseballUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BaseballAnswer {
-    private static final int LIST_SIZE = 3;
+    private static final int NUMBER_OF_ANSWER = 3;
     private final List<Integer> answer;
 
     public BaseballAnswer(){
@@ -17,7 +19,7 @@ public class BaseballAnswer {
     }
 
     public void createAnswer() {
-        while(answer.size() < LIST_SIZE){
+        while(answer.size() < NUMBER_OF_ANSWER){
             addUniqueNumber(answer);
         }
 
